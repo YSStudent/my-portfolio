@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>YS | IT &amp; Cybersecurity</title>
+  <meta name="description" content="Portfolio of YS, a student studying IT and Cybersecurity." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #0d1117;
+      --bg-alt: #121826;
+      --surface: #182031;
+      --border: #263048;
+      --text: #e8edf5;
+      --muted: #a3adc2;
+      --accent: #2dd4bf;            /* teal */
+      --accent-hover: #5eead4;
+      --accent-soft: rgba(45, 212, 191, 0.12);
+      --accent-2: #a78bfa;          /* purple */
+      --accent-2-hover: #c4b5fd;
+      --accent-2-soft: rgba(167, 139, 250, 0.14);
+      --gradient: linear-gradient(135deg, var(--accent), var(--accent-2));
+      --radius: 12px;
+      --max: 1100px;
+      --nav-h: 64px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; scroll-padding-top: var(--nav-h); }
+
+    body {
+      font-family: "Inter", system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;               /* safety net: no sideways scrolling on phones */
+      -webkit-text-size-adjust: 100%;   /* stop iOS from auto-enlarging text in landscape */
+    }
+    img, svg { max-width: 100%; }
+
+    a { color: inherit; text-decoration: none; }
+
+    .container { width: 100%; max-width: var(--max); margin: 0 auto; padding: 0 20px; }
+
+    .mono { font-family: "JetBrains Mono", monospace; }
+
+    /* ---------- Navigation ---------- */
+    .nav {
+      position: sticky; top: 0; z-index: 100;
+      height: var(--nav-h);
+      background: rgba(11, 17, 32, 0.85);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav .container {
+      height: 100%; display: flex; align-items: center; justify-content: space-between;
+    }
+    .logo { font-family: "JetBrains Mono", monospace; font-weight: 600; font-size: 1.15rem; }
+    .logo { color: var(--accent-2); }
+    .logo span {
+      background: var(--gradient); -webkit-background-clip: text; background-clip: text;
+      color: transparent;
+    }
+
+    .nav-links { display: flex; gap: 28px; list-style: none; }
+    .nav-links a {
+      font-size: 0.95rem; font-weight: 500; color: var(--muted);
+      transition: color 0.2s;
+      position: relative; padding: 4px 0;
+    }
+    .nav-links a:hover, .nav-links a.active { color: var(--text); }
+    .nav-links a.active::after {
+      content: ""; position: absolute; left: 0; right: 0; bottom: -2px;
+      height: 2px; background: var(--gradient); border-radius: 2px;
+    }
+
+    .menu-btn {
+      display: none; background: none; border: 0; cursor: pointer;
+      width: 40px; height: 40px; padding: 8px;
+    }
+    .menu-btn span {
+      display: block; height: 2px; background: var(--text); border-radius: 2px;
+      transition: transform 0.25s, opacity 0.25s;
+    }
+    .menu-btn span + span { margin-top: 6px; }
+    .menu-btn[aria-expanded="true"] span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+    .menu-btn[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+    .menu-btn[aria-expanded="true"] span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
+    /* ---------- Hero / Header ---------- */
+    .hero {
+      min-height: calc(100vh - var(--nav-h));
+      display: flex; align-items: center;
+      background:
+        radial-gradient(ellipse at 85% 15%, rgba(167, 139, 250, 0.16), transparent 50%),
+        radial-gradient(ellipse at 10% 90%, rgba(45, 212, 191, 0.10), transparent 50%),
+        linear-gradient(var(--border) 1px, transparent 1px) 0 0 / 48px 48px,
+        linear-gradient(90deg, var(--border) 1px, transparent 1px) 0 0 / 48px 48px;
+      background-color: var(--bg);
+      position: relative;
+    }
+    .hero::after {
+      content: ""; position: absolute; inset: 0;
+      background: linear-gradient(to bottom, rgba(13,17,23,0.55), var(--bg));
+      pointer-events: none;
+    }
+    .hero .container { position: relative; z-index: 1; padding-top: 60px; padding-bottom: 60px; }
+    .hero-tag {
+      display: inline-block; font-size: 0.85rem; color: var(--accent-2);
+      background: var(--accent-2-soft); border: 1px solid rgba(167,139,250,0.35);
+      padding: 6px 14px; border-radius: 999px; margin-bottom: 24px;
+    }
+    .hero h1 {
+      font-size: clamp(3rem, 10vw, 6rem); font-weight: 700; line-height: 1.05;
+      letter-spacing: -0.03em;
+      background: var(--gradient); -webkit-background-clip: text; background-clip: text;
+      color: transparent;
+    }
+    .hero h2 {
+      font-size: clamp(1.25rem, 3.5vw, 1.9rem); font-weight: 500; color: var(--muted);
+      margin-top: 12px;
+    }
+    .hero h2 strong { color: var(--accent); font-weight: 600; }
+    .cursor {
+      display: inline-block; width: 0.55ch; background: var(--accent);
+      margin-left: 4px; animation: blink 1s steps(1) infinite;
+    }
+    @keyframes blink { 50% { opacity: 0; } }
+
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 36px; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 12px 24px; border-radius: 8px; font-weight: 600; font-size: 0.95rem;
+      transition: transform 0.2s, background 0.2s, border-color 0.2s;
+    }
+    .btn-primary {
+      background: var(--gradient); color: #0d1117;
+      box-shadow: 0 6px 20px rgba(167, 139, 250, 0.25);
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(167, 139, 250, 0.4); }
+    .btn-ghost { border: 1px solid var(--accent-2); color: var(--accent-2); }
+    .btn-ghost:hover { background: var(--accent-2-soft); color: var(--accent-2-hover); transform: translateY(-2px); }
+
+    /* ---------- Sections ---------- */
+    section.block { padding: 96px 0; }
+    section.block:nth-of-type(even) { background: var(--bg-alt); }
+
+    .section-label { font-size: 0.85rem; color: var(--accent-2); margin-bottom: 8px; }
+    .section-title {
+      font-size: clamp(1.75rem, 4vw, 2.4rem); font-weight: 700;
+      letter-spacing: -0.02em; margin-bottom: 36px; color: var(--accent);
+    }
+    .section-title::after {
+      content: ""; display: block; width: 56px; height: 3px; margin-top: 12px;
+      background: var(--gradient); border-radius: 3px;
+    }
+    footer .section-title::after { margin-left: auto; margin-right: auto; }
+
+    /* About */
+    .about-grid {
+      display: grid; grid-template-columns: 1.4fr 1fr; gap: 48px; align-items: center;
+    }
+    .about-text p { font-size: 1.15rem; color: var(--muted); }
+    .about-text p + p { margin-top: 16px; }
+    .about-text strong { color: var(--text); font-weight: 600; }
+
+    .terminal {
+      background: #070c18; border: 1px solid var(--border); border-radius: var(--radius);
+      overflow: hidden; font-size: 0.9rem; box-shadow: 0 20px 40px rgba(0,0,0,0.35);
+    }
+    .terminal-bar {
+      display: flex; gap: 7px; padding: 12px 14px; background: var(--surface);
+      border-bottom: 1px solid var(--border);
+    }
+    .terminal-bar i { width: 11px; height: 11px; border-radius: 50%; background: #3b4a6b; }
+    .terminal-bar i:first-child { background: #f87171; }
+    .terminal-bar i:nth-child(2) { background: #fbbf24; }
+    .terminal-bar i:nth-child(3) { background: #34d399; }
+    .terminal pre {
+      padding: 18px; white-space: pre-wrap; word-break: break-word;
+      font-family: "JetBrains Mono", monospace; color: var(--muted); line-height: 1.7;
+    }
+    .terminal .p { color: var(--accent-2); }
+    .terminal .v { color: var(--text); }
+
+    /* Skills */
+    .skills-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(min(160px, 100%), 1fr)); gap: 16px;
+    }
+    .skill {
+      background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 22px 18px; display: flex; align-items: center; gap: 12px;
+      font-weight: 600; transition: border-color 0.2s, transform 0.2s;
+    }
+    .skills-grid.soft .skill-icon { background: var(--accent-2-soft); color: var(--accent-2); }
+    @media (hover: hover) {
+      .skill:hover { border-color: var(--accent); transform: translateY(-3px); }
+      .skills-grid.soft .skill:hover { border-color: var(--accent-2); }
+    }
+    .skill-icon {
+      flex-shrink: 0; width: 36px; height: 36px; border-radius: 8px;
+      display: grid; place-items: center;
+      background: var(--accent-soft); color: var(--accent);
+      font-family: "JetBrains Mono", monospace; font-size: 0.8rem; font-weight: 600;
+    }
+    .skills-sub { font-size: 0.85rem; color: var(--muted); margin: 32px 0 14px; }
+    .skills-sub:first-of-type { margin-top: 0; }
+
+    /* Projects */
+    .projects-grid {
+      /* min(...) stops cards from ever being wider than the screen on very small phones */
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(min(290px, 100%), 1fr)); gap: 24px;
+    }
+    .card {
+      background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 28px; display: flex; flex-direction: column;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+      transition:
+        transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1),
+        box-shadow 0.35s ease,
+        border-color 0.35s ease;
+      will-change: transform;
+    }
+    /* Once a card has faded in, keep the fade timing but use the snappier hover timing for movement */
+    .card.reveal.visible {
+      transition:
+        opacity 0.6s ease,
+        transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1),
+        box-shadow 0.35s ease,
+        border-color 0.35s ease;
+    }
+    /* Lift on hover (only on devices with a real mouse, so it doesn't "stick" on phones) */
+    @media (hover: hover) {
+      .card:hover,
+      .card.reveal.visible:hover {
+        transform: translateY(-8px);
+        border-color: var(--accent-2);
+        box-shadow:
+          0 18px 40px rgba(0, 0, 0, 0.45),
+          0 6px 24px rgba(167, 139, 250, 0.18);
+      }
+    }
+    /* Keyboard users get the same lift when tabbing to a card's link */
+    .card:focus-within,
+    .card.reveal.visible:focus-within {
+      transform: translateY(-8px);
+      border-color: var(--accent-2);
+      box-shadow:
+        0 18px 40px rgba(0, 0, 0, 0.45),
+        0 6px 24px rgba(167, 139, 250, 0.18);
+    }
+    .card-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+    .card-folder { color: var(--accent-2); }
+    .card-num { font-family: "JetBrains Mono", monospace; font-size: 0.8rem; color: var(--muted); }
+    .card h3 { font-size: 1.2rem; margin-bottom: 10px; color: var(--accent); }
+    .card p { color: var(--muted); font-size: 0.95rem; flex-grow: 1; }
+    .tags { display: flex; flex-wrap: wrap; gap: 8px; margin: 20px 0; }
+    .tags span {
+      font-family: "JetBrains Mono", monospace; font-size: 0.75rem; color: var(--accent);
+      background: var(--accent-soft); padding: 4px 10px; border-radius: 6px;
+    }
+    .card-link {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-weight: 600; font-size: 0.9rem; color: var(--accent-2);
+      transition: color 0.2s, gap 0.2s;
+    }
+    .card-link:hover { color: var(--accent-2-hover); gap: 10px; }
+
+    /* Footer / Contact */
+    footer { padding: 80px 0 32px; border-top: 1px solid var(--border); text-align: center; }
+    footer .section-title { margin-bottom: 14px; }
+    .footer-intro { color: var(--muted); max-width: 520px; margin: 0 auto 32px; }
+    .contact-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; }
+    .contact-links a {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 12px 22px; border: 1px solid var(--border); border-radius: 8px;
+      background: var(--surface); font-weight: 500; font-size: 0.95rem;
+      transition: border-color 0.2s, color 0.2s;
+      max-width: 100%; word-break: break-all;
+    }
+    .contact-links a { color: var(--accent); }
+    .contact-links a:hover { border-color: var(--accent-2); color: var(--accent-2); background: var(--accent-2-soft); }
+    .contact-links svg { flex-shrink: 0; }
+    .copyright { margin-top: 56px; font-size: 0.85rem; color: var(--muted); }
+
+    /* Reveal on scroll */
+    .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.6s, transform 0.6s; }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+      .reveal { opacity: 1; transform: none; }
+    }
+
+    /* ---------- Responsive ---------- */
+    @media (max-width: 860px) {
+      .about-grid { grid-template-columns: 1fr; gap: 32px; }
+    }
+
+    @media (max-width: 720px) {
+      .menu-btn { display: block; }
+      .nav-links {
+        position: absolute; top: var(--nav-h); left: 0; right: 0;
+        flex-direction: column; gap: 0;
+        background: var(--bg); border-bottom: 1px solid var(--border);
+        max-height: 0; overflow: hidden; transition: max-height 0.3s ease;
+      }
+      .nav-links.open { max-height: 320px; }
+      .nav-links li { border-top: 1px solid var(--border); }
+      .nav-links a { display: block; padding: 16px 20px; }
+      .nav-links a.active::after { display: none; }
+      .nav-links a.active { color: var(--accent); background: var(--accent-soft); }
+
+      .nav-links.open { box-shadow: 0 16px 32px rgba(0, 0, 0, 0.5); }
+
+      section.block { padding: 64px 0; }
+      .section-title { margin-bottom: 28px; }
+      .hero { min-height: auto; }
+      .hero .container { padding-top: 64px; padding-bottom: 72px; }
+      .hero-actions { margin-top: 28px; }
+      .btn { flex: 1 1 auto; justify-content: center; padding: 14px 20px; }
+      .about-text p { font-size: 1.05rem; }
+      .terminal { font-size: 0.8rem; }
+      .skills-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+      .skill { padding: 14px 12px; font-size: 0.92rem; gap: 10px; }
+      .projects-grid { grid-template-columns: 1fr; gap: 18px; }
+      .card { padding: 22px; }
+      footer { padding: 64px 0 28px; }
+      .contact-links { flex-direction: column; align-items: stretch; }
+      .contact-links a { justify-content: center; }
+      .copyright { margin-top: 40px; }
+    }
+
+    @media (max-width: 380px) {
+      .container { padding: 0 16px; }
+      .nav-links a { padding: 16px; }
+      .skills-grid { grid-template-columns: 1fr; }
+      .hero-actions { flex-direction: column; }
+      .card { padding: 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="nav" aria-label="Main navigation">
+    <div class="container">
+      <a href="#home" class="logo">&lt;<span>YS</span> /&gt;</a>
+      <button class="menu-btn" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-links">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Header / Hero -->
+  <header class="hero" id="home">
+    <div class="container">
+      <span class="hero-tag mono">// student portfolio</span>
+      <h1>YS</h1>
+      <h2><strong>IT &amp; Cybersecurity</strong><span class="cursor" aria-hidden="true">&nbsp;</span></h2>
+      <div class="hero-actions">
+        <a href="#projects" class="btn btn-primary">View Projects</a>
+        <a href="#contact" class="btn btn-ghost">Get in Touch</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- About -->
+    <section class="block" id="about">
+      <div class="container about-grid">
+        <div class="about-text reveal">
+          <p class="section-label mono">01. about</p>
+          <h2 class="section-title">About Me</h2>
+          <p><strong>Motivated student studying IT and Cybersecurity.</strong></p>
+          <p>I enjoy learning how systems work, how to keep them secure, and how to build practical tools along the way.</p>
+        </div>
+        <div class="terminal reveal" aria-hidden="true">
+          <div class="terminal-bar"><i></i><i></i><i></i></div>
+<pre><span class="p">ys@portfolio:~$</span> whoami
+<span class="v">YS</span>
+<span class="p">ys@portfolio:~$</span> cat focus.txt
+<span class="v">IT &amp; Cybersecurity</span>
+<span class="p">ys@portfolio:~$</span> status
+<span class="v">Learning. Building. Securing.</span></pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills -->
+    <section class="block" id="skills">
+      <div class="container">
+        <div class="reveal">
+          <p class="section-label mono">02. skills</p>
+          <h2 class="section-title">Skills</h2>
+        </div>
+
+        <p class="skills-sub mono reveal">technical</p>
+        <div class="skills-grid reveal">
+          <div class="skill"><span class="skill-icon">Py</span>Python</div>
+          <div class="skill"><span class="skill-icon">Jv</span>Java</div>
+          <div class="skill"><span class="skill-icon">&lt;/&gt;</span>HTML/CSS</div>
+          <div class="skill"><span class="skill-icon">Git</span>Git</div>
+        </div>
+
+        <p class="skills-sub mono reveal">professional</p>
+        <div class="skills-grid soft reveal">
+          <div class="skill"><span class="skill-icon">Tm</span>Teamwork</div>
+          <div class="skill"><span class="skill-icon">PS</span>Public Speaking</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects -->
+    <section class="block" id="projects">
+      <div class="container">
+        <div class="reveal">
+          <p class="section-label mono">03. projects</p>
+          <h2 class="section-title">Projects</h2>
+        </div>
+        <div class="projects-grid">
+          <!-- PROJECT 1: replace title, description, tags and link -->
+          <article class="card reveal">
+            <div class="card-top">
+              <svg class="card-folder" width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+              <span class="card-num">01</span>
+            </div>
+            <h3>Project 1 Title</h3>
+            <p>A short 1–2 sentence description of what this project does and what you learned building it.</p>
+            <div class="tags"><span>Python</span><span>Security</span></div>
+            <a href="#" class="card-link">View Project <span aria-hidden="true">&rarr;</span></a>
+          </article>
+
+          <!-- PROJECT 2 -->
+          <article class="card reveal">
+            <div class="card-top">
+              <svg class="card-folder" width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+              <span class="card-num">02</span>
+            </div>
+            <h3>Project 2 Title</h3>
+            <p>A short 1–2 sentence description of what this project does and what you learned building it.</p>
+            <div class="tags"><span>Java</span><span>Git</span></div>
+            <a href="#" class="card-link">View Project <span aria-hidden="true">&rarr;</span></a>
+          </article>
+
+          <!-- PROJECT 3 -->
+          <article class="card reveal">
+            <div class="card-top">
+              <svg class="card-folder" width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+              <span class="card-num">03</span>
+            </div>
+            <h3>Project 3 Title</h3>
+            <p>A short 1–2 sentence description of what this project does and what you learned building it.</p>
+            <div class="tags"><span>HTML/CSS</span><span>Web</span></div>
+            <a href="#" class="card-link">View Project <span aria-hidden="true">&rarr;</span></a>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer / Contact -->
+  <footer id="contact">
+    <div class="container">
+      <p class="section-label mono">04. contact</p>
+      <h2 class="section-title">Get in Touch</h2>
+      <p class="footer-intro">I'm open to internships, projects and opportunities in IT and cybersecurity. Feel free to reach out.</p>
+      <div class="contact-links">
+        <a href="mailto:Simey@student.wpunj.edu">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+          Simey@student.wpunj.edu
+        </a>
+        <!-- Replace # with your GitHub profile URL -->
+        <a href="#" target="_blank" rel="noopener noreferrer">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.42-2.7 5.4-5.26 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5Z"/></svg>
+          GitHub
+        </a>
+      </div>
+      <p class="copyright mono">&copy; <span id="year"></span> YS. Built with HTML, CSS &amp; JavaScript.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile menu toggle
+    const btn = document.querySelector('.menu-btn');
+    const links = document.getElementById('nav-links');
+    const closeMenu = () => {
+      links.classList.remove('open');
+      btn.setAttribute('aria-expanded', 'false');
+    };
+    btn.addEventListener('click', e => {
+      e.stopPropagation();
+      const open = links.classList.toggle('open');
+      btn.setAttribute('aria-expanded', open);
+    });
+    links.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
+    // Close the menu when tapping outside it, pressing Escape, or rotating to a wider screen
+    document.addEventListener('click', e => { if (!links.contains(e.target)) closeMenu(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
+    window.matchMedia('(min-width: 721px)').addEventListener('change', closeMenu);
+
+    // Highlight active nav link while scrolling
+    const navAnchors = [...links.querySelectorAll('a')];
+    const sections = navAnchors.map(a => document.querySelector(a.getAttribute('href')));
+    const setActive = () => {
+      const y = window.scrollY + window.innerHeight / 3;
+      let current = sections[0];
+      sections.forEach(s => { if (s && s.offsetTop <= y) current = s; });
+      if (window.innerHeight + window.scrollY >= document.body.scrollHeight - 4) current = sections[sections.length - 1];
+      navAnchors.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + current.id));
+    };
+    window.addEventListener('scroll', setActive, { passive: true });
+    setActive();
+
+    // Fade-in on scroll
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+    // Footer year
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
